@@ -34,9 +34,12 @@ public class ForexOperator {
 	 *
 	 */
 	public double getChangeValue() throws Exception {
-		String urlText = "https://currencyconvert.online/" + sourceCurrency
-				+ "/" + endCurrency + "/" + amount;
-				
+
+		String urlText = "https://currencyconvert.online/" + sourceCurrency.toLowerCase()
+		+ "/" + endCurrency.toLowerCase() + "/" + 
+		// remove the .0 when the number is a whole number
+		(amount % 1 == 0 ? String.format("%.0f", amount) : String.valueOf(amount));
+
 		OkHttpClient client = new OkHttpClient.Builder()
 				.followRedirects(true)
 				.build();

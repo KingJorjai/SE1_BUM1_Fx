@@ -26,7 +26,6 @@ public class CommissionCalculator {
 	 */
 
 	public double calculateCommission() throws Exception {
-//		return 0.02851;
 		double minCommission;
 		if (this.currency.equals("EUR"))
 			minCommission = MIN_COMMISION_IN_EUROS;

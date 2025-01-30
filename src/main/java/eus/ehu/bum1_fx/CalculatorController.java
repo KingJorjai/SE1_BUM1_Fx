@@ -51,9 +51,9 @@ public class CalculatorController {
 					/* Invalid numbers will be trapped in the catch block. But
 					   non-positive numbers will also be discarded */
                 if (origAmount <= 0) throw new NumberFormatException();
-                String origCurrency = (String) fromComboBox.getValue();
+                String origCurrency = fromComboBox.getValue();
                 origCurrency = origCurrency.substring(0, 3);
-                String endCurrency = (String) toComboBox.getValue();
+                String endCurrency = toComboBox.getValue();
                 endCurrency = endCurrency.substring(0, 3);
 
 					/* If both chosen currencies are equal the online converter
@@ -71,11 +71,14 @@ public class CalculatorController {
                         NumberFormat twoDecimal = NumberFormat.getNumberInstance(Locale.US);
                         twoDecimal.setMaximumFractionDigits(2);
                         twoDecimal.setRoundingMode(RoundingMode.FLOOR);
+                        if (destAmount < 0) {
+                            result.setText("Minimum commission is 3.00€");
+                            return;
+                        }
                         result.setText(twoDecimal.format(destAmount));
 
                     } catch (Exception e1) {
-                        // print error message in console
-                        e1.printStackTrace();
+                        // e1.printStackTrace();
                         result.setText("Conversion could not be done");
                     }
                 }
