@@ -74,6 +74,8 @@ public class CalculatorController {
                         result.setText(twoDecimal.format(destAmount));
 
                     } catch (Exception e1) {
+                        // print error message in console
+                        e1.printStackTrace();
                         result.setText("Conversion could not be done");
                     }
                 }
