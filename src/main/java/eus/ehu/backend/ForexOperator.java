@@ -1,4 +1,4 @@
-package eus.ehu.bum1_fx;
+package eus.ehu.backend;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

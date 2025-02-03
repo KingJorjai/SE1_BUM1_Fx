@@ -1,4 +1,8 @@
-package eus.ehu.bum1_fx;
+package eus.ehu.frontend.cli;
+
+import eus.ehu.backend.CommissionCalculator;
+import eus.ehu.backend.Currency;
+import eus.ehu.backend.ForexOperator;
 
 import java.util.InputMismatchException;
 import java.util.Locale;

@@ -1,4 +1,4 @@
-package eus.ehu.bum1_fx;
+package eus.ehu.backend;
 
 /**
  * This class knows the result of a forex exchange operation in terms of the SHORT NAME

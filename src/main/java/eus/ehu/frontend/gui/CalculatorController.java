@@ -1,9 +1,12 @@
-package eus.ehu.bum1_fx;
+package eus.ehu.frontend.gui;
 
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import eus.ehu.backend.CommissionCalculator;
+import eus.ehu.backend.Currency;
+import eus.ehu.backend.ForexOperator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
