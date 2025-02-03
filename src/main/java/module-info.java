@@ -10,8 +10,6 @@ module eus.ehu.backend {
     exports eus.ehu.backend;
     exports eus.ehu.common;
     opens eus.ehu.common to javafx.fxml;
-    exports eus.ehu.frontend;
-    opens eus.ehu.frontend to javafx.fxml;
     exports eus.ehu.frontend.gui;
     opens eus.ehu.frontend.gui to javafx.fxml;
     exports eus.ehu.frontend.cli;
