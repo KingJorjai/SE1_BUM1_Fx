@@ -80,8 +80,12 @@ public class CalculatorStarter {
 		try {
 			double endAmount = exchangeCalculator.getChangeValue(origCurrency, origAmount, endCurrency);
 			endAmount -= exchangeCalculator.calculateCommission(endAmount, endCurrency);
-			System.out.printf("\nYou can obtain a net exchange value of %s %.2f.%n", endCurrency, endAmount);
-			System.out.println("You can make it effective at any BARCENAYS CAPITAL office.");
+			if (endAmount < 0) {
+				System.out.println("\nMinimum commission is 3.00€.");
+			} else {
+				System.out.printf("\nYou can obtain a net exchange value of %s %.2f.%n", endCurrency, endAmount);
+				System.out.println("You can make it effective at any BARCENAYS CAPITAL office.");
+			}
 		} catch (Exception e1) {
 			System.out.println("\nExcuse us, the conversion could not be done. Please try it a bit later.");
 		}
