@@ -1,7 +1,7 @@
 package eus.ehu.bum1_fx.presentation;
 
 import eus.ehu.bum1_fx.business_logic.BarcenaysCalculator;
-import eus.ehu.bum1_fx.business_logic.ExchangeCalculator;
+import eus.ehu.bum1_fx.business_logic.IExchangeCalculator;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class CalculatorStarter {
 
 	public static void printValidCurrencies() {
-		ExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
+		IExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
 		System.out.println("Valid currencies with their codes are listed below.");
 		int i = 1;
 		for (String name : exchangeCalculator.getCurrencyLongNames()) {
@@ -23,7 +23,7 @@ public class CalculatorStarter {
 	}
 
 	public static void main(String[] args) {
-		ExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
+		IExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
 		Scanner input = new Scanner(System.in);
 
 		input.useLocale(Locale.ENGLISH);
