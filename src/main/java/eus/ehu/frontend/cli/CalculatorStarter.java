@@ -1,8 +1,7 @@
 package eus.ehu.frontend.cli;
 
-import eus.ehu.backend.CommissionCalculator;
-import eus.ehu.backend.Currency;
-import eus.ehu.backend.ForexOperator;
+import eus.ehu.common.BarcenaysCalculator;
+import eus.ehu.common.IExchangeCalculator;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -11,9 +10,10 @@ import java.util.Scanner;
 public class CalculatorStarter {
 
 	public static void printValidCurrencies() {
+		IExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
 		System.out.println("Valid currencies with their codes are listed below.");
 		int i = 1;
-		for (String name : Currency.longNames()) {
+		for (String name : exchangeCalculator.getCurrencyLongNames()) {
 			if (i%4 == 0)
 				System.out.println();
 			System.out.printf("%-30s", name);
@@ -23,8 +23,9 @@ public class CalculatorStarter {
 	}
 
 	public static void main(String[] args) {
-
+		IExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
 		Scanner input = new Scanner(System.in);
+
 		input.useLocale(Locale.ENGLISH);
 
 		System.out.println("\nWelcome to BARCENAYS CAPITAL. This is our "
@@ -38,14 +39,13 @@ public class CalculatorStarter {
 
 		boolean waiting = true;
 		while (waiting) {
-			try {
-				System.out.println("\nPlease indicate the currency that you intend to exchange "
-						+ "(international 3 letter code):");
-				origCurrency = input.next();
-				Currency.valueOf(origCurrency);
-				waiting = false;
+			System.out.println("\nPlease indicate the currency that you intend to exchange "
+					+ "(international 3 letter code):");
 
-			} catch (IllegalArgumentException e) {
+			origCurrency = input.next();
+			if (exchangeCalculator.isCurrencyValid(origCurrency)) {
+				waiting = false;
+			} else{
 				System.out.printf("\"%s\" could not be recognized as a known code.\n\n", origCurrency);
 				printValidCurrencies();
 			}
@@ -65,25 +65,21 @@ public class CalculatorStarter {
 
 		waiting = true;
 		while (waiting) {
-			try {
-				System.out.printf("Please indicate the currency to which you want to exchange "
-						+ "your %s %.2f (international 3 letter code):\n", origCurrency, origAmount);
-				endCurrency = input.next();
-				Currency.valueOf(endCurrency);
-				waiting = false;
+			System.out.printf("Please indicate the currency to which you want to exchange "
+					+ "your %s %.2f (international 3 letter code):\n", origCurrency, origAmount);
+			endCurrency = input.next();
 
-			} catch (IllegalArgumentException e) {
+			if (exchangeCalculator.isCurrencyValid(endCurrency)) {
+				waiting = false;
+			} else {
 				System.out.printf("\"%s\" could not be recognized as a known code.\n\n", origCurrency);
 				printValidCurrencies();
 			}
 		}
 
-		ForexOperator operator = new ForexOperator(origCurrency, origAmount, endCurrency);
 		try {
-			double endAmount = operator.getChangeValue();
-			CommissionCalculator calculator = new CommissionCalculator(endAmount,
-					endCurrency);
-			endAmount -= calculator.calculateCommission();
+			double endAmount = exchangeCalculator.getChangeValue(origCurrency, origAmount, endCurrency);
+			endAmount -= exchangeCalculator.calculateCommission(endAmount, endCurrency);
 			System.out.printf("\nYou can obtain a net exchange value of %s %.2f.%n", endCurrency, endAmount);
 			System.out.println("You can make it effective at any BARCENAYS CAPITAL office.");
 		} catch (Exception e1) {
