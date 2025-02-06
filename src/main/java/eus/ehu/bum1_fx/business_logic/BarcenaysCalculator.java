@@ -1,6 +1,6 @@
 package eus.ehu.bum1_fx.business_logic;
 
-public class BarcenaysCalculator implements IExchangeCalculator {
+public class BarcenaysCalculator implements ExchangeCalculator {
 
     @Override
     public String[] getCurrencyLongNames() {
@@ -14,19 +14,15 @@ public class BarcenaysCalculator implements IExchangeCalculator {
     }
 
     @Override
-    public double calculateCommission(double amount, String origCurrency) throws Exception {
+    public double calculateCommission(double amount, String origCurrency) {
 
         CommissionCalculator cc = new CommissionCalculator(amount, origCurrency);
-        return cc.calculateCommission();
-    }
-
-    @Override
-    public boolean isCurrencyValid(String currency) {
+        double commission;
         try {
-            Currency.valueOf(currency);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
+            commission = cc.calculateCommission();
+        } catch (Exception e) {
+            commission = -1;
         }
+        return commission;
     }
 }

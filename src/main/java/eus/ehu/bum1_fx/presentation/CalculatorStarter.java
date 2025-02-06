@@ -1,7 +1,7 @@
 package eus.ehu.bum1_fx.presentation;
 
 import eus.ehu.bum1_fx.business_logic.BarcenaysCalculator;
-import eus.ehu.bum1_fx.business_logic.IExchangeCalculator;
+import eus.ehu.bum1_fx.business_logic.ExchangeCalculator;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class CalculatorStarter {
 
 	public static void printValidCurrencies() {
-		IExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
+		ExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
 		System.out.println("Valid currencies with their codes are listed below.");
 		int i = 1;
 		for (String name : exchangeCalculator.getCurrencyLongNames()) {
@@ -23,7 +23,7 @@ public class CalculatorStarter {
 	}
 
 	public static void main(String[] args) {
-		IExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
+		ExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
 		Scanner input = new Scanner(System.in);
 
 		input.useLocale(Locale.ENGLISH);
@@ -43,7 +43,7 @@ public class CalculatorStarter {
 					+ "(international 3 letter code):");
 
 			origCurrency = input.next();
-			if (exchangeCalculator.isCurrencyValid(origCurrency)) {
+			if (true/*exchangeCalculator.isCurrencyValid(origCurrency)*/) {
 				waiting = false;
 			} else{
 				System.out.printf("\"%s\" could not be recognized as a known code.\n\n", origCurrency);
@@ -69,7 +69,7 @@ public class CalculatorStarter {
 					+ "your %s %.2f (international 3 letter code):\n", origCurrency, origAmount);
 			endCurrency = input.next();
 
-			if (exchangeCalculator.isCurrencyValid(endCurrency)) {
+			if (true/*exchangeCalculator.isCurrencyValid(origCurrency)*/) {
 				waiting = false;
 			} else {
 				System.out.printf("\"%s\" could not be recognized as a known code.\n\n", origCurrency);
