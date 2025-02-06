@@ -1,6 +1,6 @@
 package eus.ehu.bum1_fx.business_logic;
 
-public interface IExchangeCalculator {
+public interface ExchangeCalculator {
 
     String[] getCurrencyLongNames();
     double getChangeValue(String cur1, double amount, String cur2) throws Exception;

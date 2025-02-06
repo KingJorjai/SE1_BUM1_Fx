@@ -1,6 +1,6 @@
 package eus.ehu.bum1_fx.business_logic;
 
-public class BarcenaysCalculator implements IExchangeCalculator {
+public class BarcenaysCalculator implements ExchangeCalculator {
 
     @Override
     public String[] getCurrencyLongNames() {

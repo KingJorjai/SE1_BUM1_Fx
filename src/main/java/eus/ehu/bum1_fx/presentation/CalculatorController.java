@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import eus.ehu.bum1_fx.business_logic.BarcenaysCalculator;
-import eus.ehu.bum1_fx.business_logic.IExchangeCalculator;
+import eus.ehu.bum1_fx.business_logic.ExchangeCalculator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 
 
 public class CalculatorController {
-        IExchangeCalculator exchangeCalculator;
+        ExchangeCalculator exchangeCalculator;
 
         @FXML
         private TextField amountTextField;
