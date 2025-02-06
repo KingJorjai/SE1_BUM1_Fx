@@ -1,7 +1,7 @@
-package eus.ehu.bum_fx.presentation;
+package eus.ehu.bum1_fx.presentation;
 
-import eus.ehu.bum_fx.business_logic.BarcenaysCalculator;
-import eus.ehu.bum_fx.business_logic.IExchangeCalculator;
+import eus.ehu.bum1_fx.business_logic.BarcenaysCalculator;
+import eus.ehu.bum1_fx.business_logic.IExchangeCalculator;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
