@@ -6,12 +6,8 @@ module eus.ehu.backend {
     requires java.desktop;
     requires okhttp3;
 
-    opens eus.ehu.backend to javafx.fxml;
-    exports eus.ehu.backend;
-    exports eus.ehu.common;
-    opens eus.ehu.common to javafx.fxml;
-    exports eus.ehu.frontend.gui;
-    opens eus.ehu.frontend.gui to javafx.fxml;
-    exports eus.ehu.frontend.cli;
-    opens eus.ehu.frontend.cli to javafx.fxml;
+    exports eus.ehu.bum_fx.business_logic;
+    opens eus.ehu.bum_fx.business_logic to javafx.fxml;
+    exports eus.ehu.bum_fx.presentation;
+    opens eus.ehu.bum_fx.presentation to javafx.fxml;
 }

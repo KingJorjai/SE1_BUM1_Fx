@@ -1,4 +1,4 @@
-package eus.ehu.backend;
+package eus.ehu.bum_fx.business_logic;
 
 /**
  * This class knows the result of a forex exchange operation in terms of the SHORT NAME

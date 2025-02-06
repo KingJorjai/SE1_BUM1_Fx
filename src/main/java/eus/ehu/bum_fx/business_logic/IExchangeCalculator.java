@@ -1,4 +1,4 @@
-package eus.ehu.common;
+package eus.ehu.bum_fx.business_logic;
 
 public interface IExchangeCalculator {
 

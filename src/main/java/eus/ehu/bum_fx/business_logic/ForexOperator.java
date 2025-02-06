@@ -1,4 +1,4 @@
-package eus.ehu.backend;
+package eus.ehu.bum_fx.business_logic;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

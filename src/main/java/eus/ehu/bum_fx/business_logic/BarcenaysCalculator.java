@@ -1,8 +1,4 @@
-package eus.ehu.common;
-
-import eus.ehu.backend.CommissionCalculator;
-import eus.ehu.backend.Currency;
-import eus.ehu.backend.ForexOperator;
+package eus.ehu.bum_fx.business_logic;
 
 public class BarcenaysCalculator implements IExchangeCalculator {
 
