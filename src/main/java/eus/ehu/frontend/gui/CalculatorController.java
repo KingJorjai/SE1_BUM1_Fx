@@ -4,9 +4,8 @@ import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import eus.ehu.backend.CommissionCalculator;
-import eus.ehu.backend.Currency;
-import eus.ehu.backend.ForexOperator;
+import eus.ehu.common.BarcenaysCalculator;
+import eus.ehu.common.IExchangeCalculator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +20,7 @@ import javafx.scene.control.TextField;
 
 
 public class CalculatorController {
+        IExchangeCalculator exchangeCalculator;
 
         @FXML
         private TextField amountTextField;
@@ -36,11 +36,13 @@ public class CalculatorController {
 
         @FXML
         void initialize() {
+            exchangeCalculator = new BarcenaysCalculator();
+
             // initialize toComboBox
-            fromComboBox.setItems(FXCollections.observableArrayList(Currency.longNames()));
+            fromComboBox.setItems(FXCollections.observableArrayList(exchangeCalculator.getCurrencyLongNames()));
 
             // initialize fromComboBox
-            toComboBox.setItems(FXCollections.observableArrayList(Currency.longNames()));
+            toComboBox.setItems(FXCollections.observableArrayList(exchangeCalculator.getCurrencyLongNames()));
 
             result.setBackground(new Background(
                     new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -64,13 +66,9 @@ public class CalculatorController {
                 if (origCurrency.equals(endCurrency)) {
                     result.setText("Please select different currencies");
                 } else {
-                    ForexOperator operator = new ForexOperator(origCurrency,
-                            origAmount, endCurrency);
                     try {
-                        double destAmount = operator.getChangeValue();
-                        CommissionCalculator calculator = new CommissionCalculator(destAmount,
-                                endCurrency);
-                        destAmount -= calculator.calculateCommission();
+                        double destAmount = exchangeCalculator.getChangeValue(origCurrency, origAmount, endCurrency);
+                        destAmount -= exchangeCalculator.calculateCommission(destAmount, endCurrency);
                         NumberFormat twoDecimal = NumberFormat.getNumberInstance(Locale.US);
                         twoDecimal.setMaximumFractionDigits(2);
                         twoDecimal.setRoundingMode(RoundingMode.FLOOR);
