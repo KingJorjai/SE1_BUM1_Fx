@@ -20,7 +20,6 @@ import javafx.scene.control.TextField;
 
 
 public class CalculatorController {
-        ExchangeCalculator exchangeCalculator;
 
         @FXML
         private TextField amountTextField;
@@ -36,7 +35,7 @@ public class CalculatorController {
 
         @FXML
         void initialize() {
-            exchangeCalculator = new BarcenaysCalculator();
+            ExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
 
             // initialize toComboBox
             fromComboBox.setItems(FXCollections.observableArrayList(exchangeCalculator.getCurrencyLongNames()));
@@ -50,6 +49,7 @@ public class CalculatorController {
 
         @FXML
         void onClick(ActionEvent event) {
+            ExchangeCalculator exchangeCalculator = new BarcenaysCalculator();
             try {
                 double origAmount = Double.parseDouble(amountTextField.getText());
 
